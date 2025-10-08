@@ -4,7 +4,23 @@ container.classList.add("container");
 const settingButton = document.getElementById("settingButton");
 settingButton.classList.add("settingButton");
 
-function colorRandomizer() {
+const pastelsButton = document.getElementById("pastels");
+const redsButton = document.getElementById("reds");
+
+let colorPicker;
+
+pastelsButton.addEventListener("click", event => {
+    colorPicker = "pastels";
+})
+
+redsButton.addEventListener("click", event => {
+    colorPicker = "reds";
+})
+
+function colorRandomizer(string) {
+    if (string === undefined) {
+        return "black";
+    } else if (string === "pastels") {
     let colorNumber = Math.floor(Math.random() * 5);
     let pastelColor;
     switch(colorNumber) {
@@ -14,6 +30,17 @@ function colorRandomizer() {
         case 3: return pastelColor = "#BED1E3";
         case 4: return pastelColor = "#93AECA";
     };
+    } else if (string === "reds") {
+    let colorNumber = Math.floor(Math.random() * 5);
+    let pastelColor;
+    switch(colorNumber) {
+        case 0: return pastelColor = "#4D0213";
+        case 1: return pastelColor = "#ce4170ff";
+        case 2: return pastelColor = "#810100";
+        case 3: return pastelColor = "#f38e9fff";
+        case 4: return pastelColor = "#AC1634";
+    };
+    }
 };
 
 let resolution = 16;
@@ -32,7 +59,7 @@ div.style.borderColor = "black";
 div.style.borderWidth = "1px";
 
 div.addEventListener("mouseover", event => {
-    event.target.style.backgroundColor = colorRandomizer();
+    event.target.style.backgroundColor = colorRandomizer(colorPicker);
 })
 container.appendChild(div);
     }
